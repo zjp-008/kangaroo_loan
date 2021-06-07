@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: user
+  main:
+    allow-bean-definition-overriding: true
+
+---
+spring:
+  profiles: dev
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 127.0.0.1:8848
+        shared-dataids: ${spring.application.name}.yml,kangaroodb.yml,rocket.yml,redis.yml
+        refreshable-dataids: user.yml
+---
+spring:
+  profiles: test
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 112.74.33.198:8850
+        shared-dataids: ${spring.application.name}.yml,kangaroodb.yml,rocket.yml,redis.yml
+        refreshable-dataids: user.yml
+---
+spring:
+  profiles: pro
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 172.20.210.244:8850
+        shared-dataids: ${spring.application.name}.yml,kangaroodb.yml,rocket.yml,redis.yml
+        refreshable-dataids: user.yml
+
+
